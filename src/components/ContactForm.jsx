@@ -1,7 +1,6 @@
 import { nanoid } from "nanoid"
 import { AddContact, FilterContact } from "../redux-slice/contactsSlice"
 import { useDispatch, useSelector } from "react-redux"
-import { useEffect } from "react"
 import { ContactsList } from "./ContactList"
 import styled from "styled-components";
 function randomColor(){
@@ -58,9 +57,6 @@ export const ContactForm = () => {
     const contacts = useSelector(state => state.contacts.contacts)
     const filter = useSelector(state => state.contacts.filter)
     const dispatch = useDispatch()
-    useEffect(() => {
-        localStorage.setItem("contacts", JSON.stringify(contacts))
-    }, [contacts])
     const filteredContacts = contacts.filter(contact => (contact.name || "").toLowerCase().includes(filter.toLowerCase()))
     return (
         <>
